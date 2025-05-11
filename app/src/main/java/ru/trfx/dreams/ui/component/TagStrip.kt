@@ -39,48 +39,6 @@ fun TagStrip(
         var count = 0
         var hasOverflown = false
 
-//        for (i in tagPlaceables.indices) {
-//            val p = tagPlaceables[i]
-//            var newWidth = lineWidth + p.width
-//            if (lineWidth != 0) newWidth += spacing.roundToPx()
-//
-//            if (newWidth > constraints.maxWidth) {
-//                if (lineIndex < maxLines - 1) { // more lines -> line break
-//                    totalWidth =
-//                        max(totalWidth, lineWidth + (lineElements.size - 1) * spacing.roundToPx())
-//                    lineHeights += lineHeight
-//                    lineBreaks += i
-//                    lineIndex++
-//
-//                    lineWidth = 0
-//                    lineHeight = 0
-//                    lineElements.clear()
-//                } else { // last line -> overflow
-//                    hasOverflown = true
-//                    newWidth = lineWidth + overflowPlaceable.width
-//                    while (newWidth > constraints.maxWidth) {
-//                        if (lineElements.isEmpty()) {
-//                            break
-//                        }
-//
-//                        val popped = lineElements.removeAt(lineElements.lastIndex)
-//                        newWidth -= popped.width
-//                        if (lineElements.isNotEmpty()) newWidth -= spacing.roundToPx()
-//                    }
-//                }
-//            } else {
-//                count = i
-//                lineHeight = max(lineHeight, p.height)
-//                lineWidth = newWidth
-//                totalWidth = max(totalWidth, newWidth)
-//                lineElements += p
-//            }
-//        }
-//        lineHeights += lineHeight
-//
-//        lineHeights.forEach { totalHeight += it }
-//        totalHeight += lineIndex * spacing.roundToPx()
-
         var lineWidth = 0
         var lineHeight = 0
         var lineIndex = 0
@@ -155,13 +113,14 @@ fun TagStrip(
     }
 }
 
-private val previewTags = listOf<Tag>(
+private val previewTags = listOf(
 //    Tag(id = 0, name = "lorem ipsum dolor sit amet consectetur adipiscing elit lorem ipsum 1", Color.White.toArgb()),
-    Tag(id = 0, name = "lorem ipsum 2", Color.White.toArgb()),
+    Tag(id = 0, name = "lorem ipsum 1", Color.White.toArgb()),
+    Tag(id = 0, name = "ipsum 2", Color.White.toArgb()),
     Tag(id = 0, name = "lorem ipsum 3", Color.White.toArgb()),
     Tag(id = 0, name = "lorem ipsum 4", Color.White.toArgb()),
-    Tag(id = 0, name = "lorem ipsum 5", Color.White.toArgb()),
-    Tag(id = 0, name = "abc", Color.White.toArgb()),
+    Tag(id = 0, name = "lorem 5", Color.White.toArgb()),
+    Tag(id = 0, name = "abc 6", Color.White.toArgb()),
     Tag(id = 0, name = "lorem ipsum 7", Color.White.toArgb()),
 )
 
@@ -169,6 +128,6 @@ private val previewTags = listOf<Tag>(
 @Composable
 private fun Preview() {
     DreamsTheme {
-        TagStrip(previewTags, maxLines = 1)
+        TagStrip(previewTags, maxLines = 2)
     }
 }
