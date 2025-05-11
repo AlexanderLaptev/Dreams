@@ -24,13 +24,14 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.PlatformTextStyle
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.em
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
 import ru.trfx.dreams.R
 import ru.trfx.dreams.core.dream.Dream
+import ru.trfx.dreams.ui.theme.CurrentColorScheme
 import ru.trfx.dreams.ui.theme.DreamsTheme
 import ru.trfx.dreams.ui.theme.FontSizes
 import java.time.LocalDateTime
@@ -54,7 +55,7 @@ fun DreamCard(
         onClick = onClick,
         modifier = modifier,
         colors = CardDefaults.cardColors(
-            containerColor = Color.White,
+            containerColor = CurrentColorScheme.container,
         ),
     ) {
         ConstraintLayout(modifier = Modifier.padding(16.dp)) {
@@ -114,16 +115,17 @@ private fun CardContents(
                 if (title.isNotEmpty()) {
                     Text(
                         text = title,
-                        fontSize = FontSizes.Normal,
+                        fontSize = FontSizes.normal,
                         style = noPaddingTextStyle,
                     )
                 }
 
                 val createdAtText = DateTimeFormatter.ISO_LOCAL_DATE_TIME.format(createdAt)
-                val createdAtSize = if (title.isNotEmpty()) FontSizes.Tiny else FontSizes.Normal
+                val createdAtSize = if (title.isNotEmpty()) FontSizes.tiny else FontSizes.normal
                 Text(
                     text = createdAtText,
                     fontSize = createdAtSize,
+                    color = CurrentColorScheme.subtext,
                     style = noPaddingTextStyle,
                 )
             }
@@ -134,7 +136,7 @@ private fun CardContents(
                     Icon(
                         painter = painterResource(R.drawable.ic_lucid),
                         contentDescription = null,
-                        tint = Color.Black,
+                        tint = CurrentColorScheme.lucid,
                         modifier = Modifier.size(32.dp),
                     )
                 }
@@ -143,7 +145,7 @@ private fun CardContents(
                     Icon(
                         painter = painterResource(R.drawable.ic_star),
                         contentDescription = null,
-                        tint = Color.Black,
+                        tint = CurrentColorScheme.favorite,
                         modifier = Modifier.size(36.dp),
                     )
                 }
@@ -154,7 +156,7 @@ private fun CardContents(
         Spacer(Modifier.height(4.dp))
         Text(
             text = content,
-            fontSize = FontSizes.Small,
+            fontSize = FontSizes.small,
             lineHeight = (1.1).em,
             overflow = TextOverflow.Ellipsis,
             maxLines = 3,
@@ -167,7 +169,7 @@ private val previewDreamTitle = Dream(
     title = "Lorem ipsum dolor sit",
     content = "lorem ipsum dolor sit amet, consectetur adipiscing elit ".repeat(4),
     createdAt = LocalDateTime.of(2025, 5, 11, 8, 21, 11),
-    colorArgb = Color.Black.toArgb(),
+    colorArgb = Color.Gray.toArgb(),
     isFavorite = true,
     isLucid = true,
 )
@@ -177,12 +179,12 @@ private val previewDreamNoTitle = Dream(
     title = "",
     content = "lorem ipsum dolor sit amet, consectetur adipiscing elit ".repeat(4),
     createdAt = LocalDateTime.of(2025, 5, 11, 8, 21, 11),
-    colorArgb = Color.Black.toArgb(),
+    colorArgb = Color.Gray.toArgb(),
     isFavorite = true,
     isLucid = true,
 )
 
-@Preview
+@PreviewLightDark
 @Composable
 private fun Preview() {
     DreamsTheme {
